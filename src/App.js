@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './myComponent/Header'
+import Div1 from './myComponent/Div1'
+import Footer from './myComponent/Footer'
+import Alert from './myComponent/Alert';
+import { useState} from 'react';
 
-function App() {
+function App(props) {
+  const[alert,setAlert]=useState("");
+  const showAlert=(message)=>{
+    setAlert({
+        msg: message
+    }
+    )
+    setTimeout(()=>{
+      setAlert("")
+    },1400);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Header title={"PlayWithText"} aboutText={"About"}/>
+    <Alert alert={alert}/>
+    <Div1 showAlert={showAlert} btnValue="copy"/>
+    <Footer/>
+    </>
   );
 }
 
